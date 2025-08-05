@@ -1,17 +1,7 @@
 version: 2
 
 models:
-  - name: customers
-    description: One record per customer
-    columns:
-      - name: customer_id
-        description: Primary key
-        data_tests:
-          - unique
-          - not_null
-      - name: first_order_date
-        description: NULL when a customer has not yet placed an order.
-
+ 
   - name: stg_customers
     description: This model cleans up customer data
     columns:
@@ -39,3 +29,16 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+
+  - name: stg_stripe_payments
+    description: This model cleans up stripe order data
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: order_id

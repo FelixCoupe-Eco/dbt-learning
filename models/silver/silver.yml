@@ -1,0 +1,13 @@
+version: 2
+
+models:
+ 
+  - name: silver_orders
+    description: This model refines stg_stripe_payments
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null
