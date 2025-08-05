@@ -1,6 +1,3 @@
--- Force this model only to be materialized as a view, overriding the dbt_project.yml
-{{ config(materialized="view") }}
-
 with
     customers as (select * from {{ ref("stg_customers") }}),
 
