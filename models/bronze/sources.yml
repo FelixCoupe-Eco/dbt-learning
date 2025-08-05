@@ -15,15 +15,16 @@ sources:
     loaded_at_field: _etl_loaded_at
     tables:
       - name: customers
-        description: One record per customer.
+        description: One record per customer (raw)
         freshness: null
         columns:
           - name: id
+            description: Primary Key for customer id
             data_tests:
             - not_null
             - unique
       - name: orders
-        description: One record per order. Includes cancelled and deleted orders.
+        description: One record per order (raw). Includes cancelled and deleted orders.
         columns:
           - name: id
             data_tests:
@@ -32,7 +33,7 @@ sources:
         
 
   - name: stripe
-    description: This is a replica of the Postgres database used by our app
+    description: This is a replica of the Postgres database used by Stripe to handle our payments data
     database: dbt-tutorial
     schema: stripe
     tables:
