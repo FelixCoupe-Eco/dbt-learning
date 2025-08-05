@@ -5,19 +5,31 @@ sources:
     description: This is a replica of the Postgres database used by our app
     database: dbt-tutorial
     schema: jaffle_shop
+    freshness:
+      error_after:
+        count: 7
+        period: day
+      warn_after:
+        count: 1
+        period: day
+    loaded_at_field: _etl_loaded_at
     tables:
       - name: customers
         description: One record per customer.
+        freshness: null
+        columns:
+          - name: id
+            data_tests:
+            - not_null
+            - unique
       - name: orders
         description: One record per order. Includes cancelled and deleted orders.
-        freshness:
-          error_after:
-            count: 7
-            period: day
-          warn_after:
-            count: 1
-            period: day
-        loaded_at_field: _etl_loaded_at
+        columns:
+          - name: id
+            data_tests:
+            - not_null
+            - unique
+        
 
   - name: stripe
     description: This is a replica of the Postgres database used by our app
