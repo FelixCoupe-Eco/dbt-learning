@@ -8,6 +8,6 @@ One of the following values:
 | shipped        | Order has been shipped, not yet been delivered   |
 | completed      | Order has been received by customers             |
 | return pending | Customer indicated they want to return this item |
-| returned       | Item has been returned                           |
+| returned       | The item has been returned                       |
 
 {% enddocs %}
