@@ -1,4 +1,5 @@
-version: 2
+# jaffle_shop.orders
+# jaffle_shop.customers
 
 sources:
   - name: jaffle_shop
@@ -30,7 +31,6 @@ sources:
             data_tests:
             - not_null
             - unique
-        
 
   - name: stripe
     description: This is a replica of the Postgres database used by Stripe to handle our payments data
@@ -39,3 +39,16 @@ sources:
     tables:
       - name: payment
         description: payment information for orders
+        columns:
+          - name: id
+            description: Primary key for payment table (raw)
+            data_tests:
+              - not_null
+              - unique
+          - name: order_id
+            description: Foreign key to orders table (raw)
+            data_tests:
+              - not_null
+              - relationships:
+                  to: ref('stg_orders')
+                  field: order_id
