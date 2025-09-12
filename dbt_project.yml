@@ -43,6 +43,5 @@ models:
       materialized: view
     gold:
       materialized: table
-
-
-
+    legacy:
+      +materialized: table

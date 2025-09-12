@@ -1,0 +1,10 @@
+{
+    "dbt.enableNewLineagePanel": true,
+    "terminal.integrated.env.osx": {
+        "BIGQUERY_PROJECT": "dbt-test-468116",
+        "DBT_DATASET": "dbt_fcoupe",
+        "BIGQUERY_LOCATION": "US",
+        "GOOGLE_APPLICATION_CREDENTIALS": "/Users/felix.coupe/.dbt/dbt-learning-user-creds.json"
+    },
+    "dbt.perspectiveTheme": "Vintage"
+}
