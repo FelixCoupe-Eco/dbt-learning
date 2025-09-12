@@ -1,0 +1,45 @@
+version: 2
+
+models:
+ 
+  - name: stg_customers
+    description: This model cleans up customer data, renaming some fields. unique customer per row. 
+    columns:
+      - name: customer_id
+        description: Primary key
+        data_tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    description: This model cleans up order data, unique order per row. 
+    columns:
+      - name: order_id
+        description: Primary key
+        data_tests:
+          - unique
+          - not_null
+      - name: status
+        description: '{{ doc("order_status") }}'
+        data_tests:
+          - accepted_values:
+              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+
+  - name: stg_stripe_payments
+    description: This model cleans up stripe order data
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_orders')
+              field: order_id
